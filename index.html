@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Graficzne | Paulina Leśniewska</title>
+    <meta name="description" content="Projektuję skuteczne banery reklamowe, kreatywne plakaty, wizytówki, broszury oraz odzież. Zobacz moje realizacje dla agencji Asgraf S.J. oraz projekty zrealizowane jako freelancer.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #f7f9fc;
+            --bg-card: #ffffff;
+            --text-main: #2a3b4c;
+            --text-muted: #6a7d91;
+            --accent: #1a2533;
+            --font-main: 'Poppins', sans-serif;
+            --font-title: 'Playfair Display', serif; 
+        }
+
+        body {
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px 80px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        nav {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        h1 {
+            margin: 0;
+            font-family: var(--font-title);
+            font-size: 3.5em;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: -1.5px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.25em;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 20px auto 0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 30px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 50px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.05);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 150%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+        }
+
+        .card:hover::after {
+            animation: shine 0.7s forwards;
+        }
+
+        @keyframes shine {
+            100% {
+                left: 150%;
+            }
+        }
+
+        .card .img-container {
+            overflow: hidden;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .card .img-container.dual-img {
+            display: flex;
+        }
+
+        .card img {
+            width: 100%;
+            display: block;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card .img-container.dual-img img {
+            width: 50%;
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.3em;
+            margin: 0 0 10px 0;
+            color: var(--accent);
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 1em;
+            margin: 0;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--accent);
+            color: #fff;
+            margin-top: 100px;
+        }
+
+        footer h2 {
+            font-family: var(--font-title);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            color: #bbb;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5em; }
+            p.subtitle { font-size: 1.1em; }
+            .portfolio-grid { gap: 30px; }
+            .container { padding: 0 15px; }
+            .card:hover { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#projekty">PROJEKTY</a>
+        <a href="#kontakt">KONTAKT</a>
+    </nav>
+
+    <header id="projekty">
+        <h1>Paulina Leśniewska</h1>
+        <p class="subtitle">Projektuję banery reklamowe, kreatywne plakaty, wizytówki, broszury oraz nadruki. Spójrz na moje wybrane realizacje.</p>
+    </header>
+
+    <main class="container">
+        <div class="portfolio-grid">
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="Trojanek_BiesiadaVIII.jpg" alt="Plakat promujący VIII Biesiada Cygańsko-Słowiańską">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Plakat: VIII Biesiada Cygańsko-Słowiańska</h3>
+                    <p class="card-desc">Energetyczny projekt graficzny przygotowany dla Bogdana Trojanka, skutecznie promujący wydarzenie kulturalne.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="WIPE_PLAKAT.png" alt="Plakat eventu gamingowego W i Poza Ekranem">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Plakat: W i Poza Ekranem</h3>
+                    <p class="card-desc">Minimalistyczny, nowoczesny design promujący event dla graczy w Szczecinku. Projekt nastawiony na młodą grupę docelową.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container dual-img"> 
+                    <img src="polkolonie_dziewczynki.jpg" alt="Materiały graficzne dla Old School of English - Wariant 1">
+                    <img src="Półkolonie_chłopcy.jpg" alt="Materiały graficzne dla Old School of English - Wariant 2">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Materiały: Old School of English</h3>
+                    <p class="card-desc">Komplet przyjaznych materiałów graficznych (w tym pamiątkowe dyplomy) na letnie półkolonie językowe dla dzieci.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="koszulka_święta.png" alt="Projekt nadruku na koszulkę - motyw świąteczny">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Nadruk: Świąteczny Prezent</h3>
+                    <p class="card-desc">Okolicznościowy projekt grafiki na odzież męską. Estetyczny i wpadający w oko świąteczny motyw, idealny na prezent.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="Logo_UKS.png" alt="Projekt Logo UKS OPTY Mielno dla fanów">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Logo: UKS OPTY Mielno (Kibice)</h3>
+                    <p class="card-desc">Dynamiczny projekt logo klubowego dedykowany rodzicom i fanom.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="UKS_koszulka.png" alt="Projekt Koszulki UKS OPTY Mielno z wektorową żaglówką">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Odzież: UKS OPTY Mielno</h3>
+                    <p class="card-desc">Połączenie oficjalnego logo klubu z autorską, wektorową ilustracją żaglówki. Projekt budujący dumę i przynależność do zespołu.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container dual-img">
+                    <img src="Wizytówka1.jpg" alt="Projekt eleganckiej wizytówki dla cukierni FIT i KETO - Awers">
+                    <img src="Wizytówka2.jpg" alt="Projekt eleganckiej wizytówki dla cukierni FIT i KETO - Rewers">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Wizytówka: Cukiernia FIT & KETO</h3>
+                    <p class="card-desc">Elegancki projekt wizytówki (awers i rewers). Minimalistyczny design świetnie podkreśla charakter marki i buduje zaufanie klientów.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container dual-img">
+                    <img src="Ulotka1.jpg" alt="Projekt ulotki reklamowej dla cukierni FIT i KETO - Strona 1">
+                    <img src="Ulotka2.jpg" alt="Projekt ulotki reklamowej dla cukierni FIT i KETO - Strona 2">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Ulotka: Cukiernia FIT & KETO</h3>
+                    <p class="card-desc">Dwustronna ulotka reklamowa (strona 1 i 2). Projekt nastawiony na czytelną prezentację zdrowych, bezcukrowych deserów.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="kontakt">
+        <h2>Zróbmy coś razem!</h2>
+        <p>Szukasz grafika? Napisz.</p>
+        <p>Napisz do mnie: <a href="mailto:paulina.jadzia19@gmail.com">paulina.jadzia19@gmail.com</a></p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/jadwixx_the_art/?next=%2Fjadwixx16%2F" target="_blank">Instagram Art</a>
+        </div>
+        
+        <p><small>&copy; 2026 Paulina Leśniewska. Wszelkie prawa zastrzeżone.</small></p>
+    </footer>
+
+</body>
+</html>
